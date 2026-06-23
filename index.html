@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobowale Ifeoluwa — Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF9F5;
+    --paper-line:#E3E0D6;
+    --ink:#1C1F22;
+    --ink-soft:#5B6168;
+    --excel:#107C41;
+    --excel-soft:#E6F4EC;
+    --pbi:#9B7B00;
+    --pbi-soft:#FBF1CE;
+    --pbi-dot:#F2C811;
+    --building:#9AA0A6;
+    --building-soft:#F1F1EF;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    padding-bottom:78px; /* room for fixed sheet-tab bar */
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'JetBrains Mono', monospace;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+  a{color:inherit;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:96px 0 80px;
+    background-image:
+      linear-gradient(var(--paper-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+    background-size: 38px 38px;
+    background-position: center top;
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 75%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 0%, black 75%, transparent 100%);
+  }
+  .hero-inner{ -webkit-mask-image:none; mask-image:none; }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--excel);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--excel);
+    display:inline-block;
+    border-radius:1px;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:clamp(34px, 5.4vw, 58px);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    max-width:780px;
+  }
+  h1 em{
+    font-style:italic;
+    color:var(--excel);
+  }
+  .lede{
+    margin-top:22px;
+    font-size:18px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:560px;
+  }
+  .hero-links{
+    margin-top:32px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    padding:11px 18px;
+    border-radius:3px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid var(--ink);
+    transition: all .15s ease;
+  }
+  .btn-fill{ background:var(--ink); color:var(--paper); }
+  .btn-fill:hover{ background:var(--excel); border-color:var(--excel); }
+  .btn-line:hover{ background:var(--ink); color:var(--paper); }
+
+  /* ---------- STATS STRIP ---------- */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--paper-line);
+    border-radius:4px;
+    overflow:hidden;
+    background:var(--white);
+  }
+  .stat{
+    padding:22px 18px;
+    border-right:1px solid var(--paper-line);
+  }
+  .stat:last-child{ border-right:none; }
+  .stat .ref{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--building);
+    margin-bottom:10px;
+  }
+  .stat .num{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:26px;
+    color:var(--ink);
+  }
+  .stat .label{
+    margin-top:4px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    line-height:1.4;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding:84px 0; }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:44px;
+    border-bottom:1px solid var(--paper-line);
+    padding-bottom:18px;
+  }
+  .section-head .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.06em;
+  }
+  h2{
+    font-family:'Fraunces', serif;
+    font-size:clamp(26px,3vw,34px);
+    font-weight:600;
+  }
+
+  /* ---------- PROJECT ROWS ---------- */
+  .row{
+    border:1px solid var(--paper-line);
+    border-top:none;
+    background:var(--white);
+  }
+  .row:first-of-type{ border-top:1px solid var(--paper-line); border-radius:4px 4px 0 0; }
+  .row:last-of-type{ border-radius:0 0 4px 4px; }
+  details.row > summary{
+    list-style:none;
+    cursor:pointer;
+    padding:20px 22px;
+    display:grid;
+    grid-template-columns: 38px 1fr auto auto;
+    align-items:center;
+    gap:18px;
+  }
+  details.row > summary::-webkit-details-marker{ display:none; }
+  .row-no{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--building);
+    font-size:13px;
+  }
+  .row-title{ font-weight:600; font-size:16px; }
+  .row-sub{ font-size:13.5px; color:var(--ink-soft); margin-top:3px; font-weight:400; }
+  .pill{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    padding:5px 10px;
+    border-radius:20px;
+    white-space:nowrap;
+  }
+  .pill-excel{ background:var(--excel-soft); color:var(--excel); }
+  .pill-pbi{ background:var(--pbi-soft); color:var(--pbi); }
+  .chev{
+    font-size:18px;
+    color:var(--ink-soft);
+    transition:transform .2s ease;
+  }
+  details[open] .chev{ transform:rotate(45deg); }
+  .row-body{
+    padding:0 22px 26px 78px;
+    display:grid;
+    gap:18px;
+    grid-template-columns: 1.1fr 1fr;
+  }
+  .row-body h4{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  .row-body p, .row-body li{ font-size:14.5px; line-height:1.6; color:var(--ink); }
+  .row-body ul{ padding-left:18px; }
+  .row-body li{ margin-bottom:6px; }
+  .metric-line{
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px dashed var(--paper-line);
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:var(--excel);
+  }
+  .row-shot{
+    grid-column:1 / -1;
+    margin-top:4px;
+  }
+  .row-shot img{
+    width:100%;
+    display:block;
+    border:1px solid var(--paper-line);
+    border-radius:4px;
+  }
+  .row-shot .cap{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    margin-top:8px;
+  }
+  .shot-gallery{
+    grid-column:1 / -1;
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    padding-bottom:6px;
+    margin-top:4px;
+    scroll-snap-type:x proximity;
+  }
+  .shot-gallery figure{
+    flex:0 0 auto;
+    width:320px;
+    scroll-snap-align:start;
+  }
+  .shot-gallery img{
+    width:100%;
+    display:block;
+    border:1px solid var(--paper-line);
+    border-radius:4px;
+  }
+  .shot-gallery figcaption{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    margin-top:8px;
+  }
+
+  /* building / placeholder row */
+  .row.building summary{ opacity:.7; }
+  .row.building .row-title{ color:var(--ink-soft); }
+  .pill-building{
+    background:repeating-linear-gradient(45deg, var(--building-soft), var(--building-soft) 4px, #fff 4px, #fff 8px);
+    color:var(--building);
+    border:1px solid var(--paper-line);
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skill-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .skill-card{
+    border:1px solid var(--paper-line);
+    border-radius:4px;
+    padding:22px;
+    background:var(--white);
+  }
+  .skill-card .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--building);
+    margin-bottom:12px;
+    display:block;
+  }
+  .skill-card ul{ list-style:none; display:flex; flex-direction:column; gap:9px;}
+  .skill-card li{ font-size:14.5px; display:flex; align-items:center; gap:9px; }
+  .dot{ width:6px; height:6px; border-radius:50%; background:var(--excel); flex-shrink:0; }
+  .dot.dashed{ background:transparent; border:1.5px dashed var(--building); }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns: 1fr 1.4fr; gap:48px; align-items:start; }
+  .about-grid p{ font-size:15.5px; line-height:1.75; color:var(--ink-soft); margin-bottom:14px; }
+  .about-grid p strong{ color:var(--ink); font-weight:600; }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact-box{
+    border:1px solid var(--ink);
+    border-radius:4px;
+    padding:46px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:24px;
+    flex-wrap:wrap;
+    background:var(--white);
+  }
+  .contact-box h2{ max-width:380px; }
+  footer{
+    text-align:center;
+    padding:34px 0 110px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--building);
+  }
+
+  /* ---------- SHEET TAB NAV (signature element) ---------- */
+  .tabbar{
+    position:fixed;
+    left:0; right:0; bottom:0;
+    background:var(--building-soft);
+    border-top:1px solid var(--paper-line);
+    display:flex;
+    align-items:flex-end;
+    gap:2px;
+    padding:0 18px;
+    overflow-x:auto;
+    z-index:50;
+  }
+  .tabbar a{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    text-decoration:none;
+    color:var(--ink-soft);
+    padding:11px 18px 10px;
+    background:var(--building-soft);
+    border:1px solid transparent;
+    border-bottom:none;
+    border-radius:4px 4px 0 0;
+    white-space:nowrap;
+    transition:.15s ease;
+  }
+  .tabbar a.active{
+    background:var(--white);
+    color:var(--excel);
+    border-color:var(--paper-line);
+    transform:translateY(-1px);
+    font-weight:500;
+  }
+  .tabbar a:hover{ color:var(--excel); }
+
+  @media (max-width:760px){
+    .stats{ grid-template-columns:repeat(2,1fr); }
+    .stat:nth-child(2){ border-right:none; }
+    .row-body{ grid-template-columns:1fr; padding-left:22px; }
+    details.row > summary{ grid-template-columns: 24px 1fr; row-gap:8px; }
+    details.row > summary .pill, details.row > summary .chev{ grid-column:2; justify-self:start; }
+    .about-grid{ grid-template-columns:1fr; }
+    .skill-grid{ grid-template-columns:1fr; }
+    .contact-box{ flex-direction:column; align-items:flex-start; text-align:left; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow">Sobowale Ifeoluwa — Data Analyst</div>
+    <h1>I turn raw rows into <em>decisions</em> someone can act on.</h1>
+    <p class="lede">I clean messy spreadsheets, build KPI dashboards in Excel and Power BI, and write up findings in plain language — so the next step is obvious, not buried in a pivot table.</p>
+    <div class="hero-links">
+      <a href="#projects" class="btn btn-fill">View projects ↓</a>
+      <a href="assets/resume.pdf" class="btn btn-line" download>Download resume</a>
+      <a href="mailto:sobowalemodupe@gmail.com" class="btn btn-line">Email me</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap" style="margin-top:-28px; position:relative; z-index:2;">
+  <div class="stats">
+    <div class="stat">
+      <div class="ref">A1</div>
+      <div class="num">1,200</div>
+      <div class="label">transaction rows cleaned to a 0% error rate</div>
+    </div>
+    <div class="stat">
+      <div class="ref">B1</div>
+      <div class="num">₦465.6M</div>
+      <div class="label">in profit tracked across a 4-region sales dashboard</div>
+    </div>
+    <div class="stat">
+      <div class="ref">C1</div>
+      <div class="num">5</div>
+      <div class="label">linked dashboard pages in one fleet-ops capstone</div>
+    </div>
+    <div class="stat">
+      <div class="ref">D1</div>
+      <div class="num">4</div>
+      <div class="label">end-to-end projects shipped, 1 SQL project in progress</div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <span class="tag">05 rows · click to expand</span>
+    </div>
+
+    <div>
+      <details class="row" open>
+        <summary>
+          <span class="row-no">01</span>
+          <span>
+            <div class="row-title">Fleet Operations Capstone</div>
+            <div class="row-sub">A 5-page Power BI dashboard covering revenue, fleet health, driver safety, route profit, and fuel cost</div>
+          </span>
+          <span class="pill pill-pbi">Power BI</span>
+          <span class="chev">+</span>
+        </summary>
+        <div class="row-body">
+          <div>
+            <h4>What it answers</h4>
+            <p>A transport company needs one place to see whether routes, vehicles, and drivers are actually making money — not just moving freight.</p>
+            <h4 style="margin-top:16px;">Pages built</h4>
+            <ul>
+              <li>Executive Overview — revenue by month and top customers, delivery reliability</li>
+              <li>Fleet Utilization & Performance — fuel efficiency by vehicle age, maintenance cost by make</li>
+              <li>Driver & Safety Logistics — incident cost trend, claims by driver, on-time delivery leaders</li>
+              <li>Route Profitability — most and least profitable lanes, revenue per mile</li>
+              <li>Fuel Management — fuel spend vs. cost per mile, idle time by vehicle make</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Findings</h4>
+            <p>Across $298.62M in revenue and 85K trips, the fleet held a strong 65.18% profit margin — but on-time delivery sat at just 55.67%, with Charlotte → Portland as the standout profitable lane and Volvo trucks driving the most fleet idle time.</p>
+            <div class="metric-line">→ 5 linked pages · 14-table model · Power Query ETL · DAX KPIs</div>
+          </div>
+          <div class="shot-gallery">
+            <figure>
+              <img src="assets/cap-1-executive.png" alt="Executive Overview page of the logistics capstone dashboard">
+              <figcaption>01 — Executive Overview</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/cap-2-fleet.png" alt="Fleet Utilization and Performance page">
+              <figcaption>02 — Fleet Utilization & Performance</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/cap-3-driver-safety.png" alt="Driver and Safety Logistics Overview page">
+              <figcaption>03 — Driver & Safety Logistics</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/cap-4-route.png" alt="Route Profitability page">
+              <figcaption>04 — Route Profitability</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/cap-5-fuel.png" alt="Fuel Management page">
+              <figcaption>05 — Fuel Management</figcaption>
+            </figure>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary>
+          <span class="row-no">02</span>
+          <span>
+            <div class="row-title">Retail Sales Performance Dashboard</div>
+            <div class="row-sub">Power BI dashboard tracking profit by brand, color, income level, and time</div>
+          </span>
+          <span class="pill pill-pbi">Power BI</span>
+          <span class="chev">+</span>
+        </summary>
+        <div class="row-body">
+          <div>
+            <h4>What it answers</h4>
+            <p>Which products, customer segments, and months actually drive profit — and where the business is losing ground.</p>
+            <ul>
+              <li>Profit by brand and by product color</li>
+              <li>Yearly revenue trend and monthly customer volume</li>
+              <li>Profit split by customer income level</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Key insight</h4>
+            <p>On $3M in revenue and $932K in profit across 250 customers, Apple led every brand by profit, white was the best-selling color, and medium income-level customers generated the largest profit share. Revenue peaked in 2023; February was consistently the weakest month.</p>
+            <div class="metric-line">→ $3M revenue · $932K profit · 250 customers · brand & region slicers</div>
+          </div>
+          <div class="row-shot">
+            <img src="assets/power-bi-sales.png" alt="Power BI Sales Performance Dashboard showing revenue, profit, brand and color breakdowns">
+            <div class="cap">Sales Performance Dashboard — Power BI</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary>
+          <span class="row-no">03</span>
+          <span>
+            <div class="row-title">Excel Sales KPI Dashboard</div>
+            <div class="row-sub">Pivot-table dashboard built from raw transaction data, no Power BI</div>
+          </span>
+          <span class="pill pill-excel">Excel</span>
+          <span class="chev">+</span>
+        </summary>
+        <div class="row-body">
+          <div>
+            <h4>What it answers</h4>
+            <p>Built from a 2,098-order dataset across 4 regions, 10 products, and 6 sales reps. The brief: calculate Revenue, COGS, Profit, and Customer KPIs from scratch, then visualize them.</p>
+            <ul>
+              <li>Most profitable product, by pivot table</li>
+              <li>Top sales rep by revenue</li>
+              <li>COGS by city</li>
+              <li>Customer volume by month, to spot the weakest month</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Findings</h4>
+            <p>Laptops were the single most profitable product line (₦105.3M), Lagos carried the highest cost of goods sold of any region, and one sales rep outsold the rest of the team by a wide margin.</p>
+            <div class="metric-line">→ ₦2.33B revenue · ₦465.6M profit · region + category slicers</div>
+          </div>
+          <div class="row-shot">
+            <img src="assets/excel-project.png" alt="Excel Sales Performance Dashboard with pivot tables, slicers, and KPI cards">
+            <div class="cap">Sales Performance Dashboard — Excel</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary>
+          <span class="row-no">04</span>
+          <span>
+            <div class="row-title">E-commerce Data Cleaning</div>
+            <div class="row-sub">Turned a messy 1,200-row order export into an analysis-ready dataset</div>
+          </span>
+          <span class="pill pill-excel">Excel</span>
+          <span class="chev">+</span>
+        </summary>
+        <div class="row-body">
+          <div>
+            <h4>What it answers</h4>
+            <p>Raw transaction exports rarely arrive clean. This project takes 1,200 rows across 14 columns and fixes the issues that would otherwise break downstream reporting.</p>
+            <ul>
+              <li>Filled 309 missing coupon codes instead of dropping rows</li>
+              <li>Verified zero duplicate order IDs</li>
+              <li>Standardized text casing and trimmed whitespace across every category field</li>
+              <li>Converted prices to a strict 2-decimal currency format</li>
+              <li>Normalized every date to ISO 8601</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Why it matters</h4>
+            <p>None of the 1,200 records were lost, and every column was left in a state that won't silently break a filter, a VLOOKUP, or a pivot table later.</p>
+            <div class="metric-line">→ 0% error rate on IDs, dates, and number formats</div>
+          </div>
+          <div class="shot-gallery">
+            <figure>
+              <img src="assets/p1-raw-data.png" alt="Raw transaction data before cleaning, 14 columns">
+              <figcaption>Raw data — before cleaning</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/p1-power-query-clean.png" alt="Power Query applied steps removing duplicates and fixing types">
+              <figcaption>Power Query — applied cleaning steps</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/p1-documentation.png" alt="Data cleaning documentation report listing every action and its impact">
+              <figcaption>Documentation — action-by-action report</figcaption>
+            </figure>
+          </div>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary>
+          <span class="row-no">05</span>
+          <span>
+            <div class="row-title">E-commerce Sales Analysis</div>
+            <div class="row-sub">Descriptive statistics and trend analysis on the cleaned order data</div>
+          </span>
+          <span class="pill pill-excel">Excel</span>
+          <span class="chev">+</span>
+        </summary>
+        <div class="row-body">
+          <div>
+            <h4>What it answers</h4>
+            <p>Picks up where the cleaning project left off: what does this data actually say about the business?</p>
+            <ul>
+              <li>Mean vs. median order value, to check for outlier-driven skew</li>
+              <li>Year-over-year revenue trend</li>
+              <li>Revenue by product category and payment method</li>
+              <li>Order status breakdown — delivered vs. cancelled vs. returned</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Findings</h4>
+            <p>Average order value ($1,054) sat well above the median ($824), pointing to a handful of high-value orders pulling the average up. More urgently: cancelled and returned orders combined (497) outnumbered successful deliveries (231) — a logistics or satisfaction problem worth flagging before a profitability project, not after.</p>
+            <div class="metric-line">→ $1.26M in orders analyzed across 3 years</div>
+          </div>
+          <div class="shot-gallery">
+            <figure>
+              <img src="assets/p2-sales-data.png" alt="Cleaned sales data sheet used as the source for the analysis">
+              <figcaption>Sales data — cleaned source</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/p2-statistics.png" alt="Descriptive statistics table: count, mean, median, min, max">
+              <figcaption>Statistics — count, mean, median, range</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/p2-trend.png" alt="Pivot tables showing revenue by year, category, payment method, order status, and channel">
+              <figcaption>Trend — pivot breakdowns</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/p2-observations.png" alt="Key observations written up from the analysis">
+              <figcaption>Observations — written findings</figcaption>
+            </figure>
+          </div>
+        </div>
+      </details>
+
+      <details class="row building">
+        <summary>
+          <span class="row-no">06</span>
+          <span>
+            <div class="row-title">SQL Querying Project</div>
+            <div class="row-sub">Joins, window functions, and aggregation on a multi-table dataset</div>
+          </span>
+          <span class="pill pill-building">Building</span>
+          <span class="chev">+</span>
+        </summary>
+        <div class="row-body">
+          <div>
+            <h4>Status</h4>
+            <p>In progress. This slot is reserved on purpose — a portfolio that only shows finished work hides the fact that real analysis takes iteration.</p>
+          </div>
+          <div>
+            <h4>Plan</h4>
+            <p>Will cover multi-table joins, window functions, and a query-driven summary written the same way as the projects above: problem, approach, findings.</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <span class="tag">tools &amp; methods</span>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <span class="tag">Spreadsheets</span>
+        <ul>
+          <li><span class="dot"></span>Excel — pivot tables, slicers, KPI dashboards</li>
+          <li><span class="dot"></span>Formula-driven (not hardcoded) models</li>
+          <li><span class="dot"></span>Data cleaning at scale — nulls, duplicates, formatting</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <span class="tag">Business Intelligence</span>
+        <ul>
+          <li><span class="dot"></span>Power BI — multi-page reports, drill-through</li>
+          <li><span class="dot"></span>DAX measures and calculated columns</li>
+          <li><span class="dot"></span>Slicers, bookmarks, and KPI cards</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <span class="tag">Analysis &amp; Querying</span>
+        <ul>
+          <li><span class="dot"></span>Data profiling &amp; statistical analysis</li>
+          <li><span class="dot"></span>Data storytelling — written findings, not just charts</li>
+          <li><span class="dot"></span>Python — data analysis fundamentals</li>
+          <li><span class="dot dashed"></span>SQL — in progress</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head">
+      <h2>About</h2>
+      <span class="tag">background</span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <span class="tag" style="display:block; margin-bottom:10px;">Currently</span>
+        <p>Data Analysis Intern at Decode Labs, and a graduate of TS Academy's Data Analysis Training (2026). B.Sc. Political Science, University of Lagos.</p>
+      </div>
+      <div>
+        <p>I spent 5 years in administrative roles at an educational institution — managing financial databases, auditing payment records, and keeping 100% data integrity across thousands of student records. That's where the analyst instinct started: data only matters if someone can trust it and act on it.</p>
+        <p>I now work mostly in <strong>Excel and Power BI</strong>, taking raw exports — sales transactions, fleet logs, e-commerce orders — and turning them into dashboards a non-analyst can read in under a minute.</p>
+        <p>Most of my projects follow the same shape: <strong>clean the data, calculate the real KPIs, build the visual, then write down what it means.</strong> That last step is the one a lot of dashboards skip, and it's the one stakeholders actually act on.</p>
+        <p>I'm currently extending that into <strong>SQL and Python</strong>, so I can work directly against a database instead of a static export.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-box">
+      <h2>Have a dataset that needs a story?</h2>
+      <div class="hero-links" style="margin-top:0;">
+        <a href="mailto:sobowalemodupe@gmail.com" class="btn btn-fill">Email me</a>
+        <a href="https://linkedin.com/in/ifeoluwa-sobowale-383585356" class="btn btn-line">LinkedIn</a>
+        <a href="https://github.com/Ifeoluwa2001/data-analytics-portfolio" class="btn btn-line">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>Sobowale Ifeoluwa · Data Analyst · Built row by row</footer>
+
+<nav class="tabbar" id="tabbar">
+  <a href="#projects" data-tab>Projects</a>
+  <a href="#skills" data-tab>Skills</a>
+  <a href="#about" data-tab>About</a>
+  <a href="#contact" data-tab>Contact</a>
+</nav>
+
+<script>
+  const tabs = document.querySelectorAll('[data-tab]');
+  const sections = [...tabs].map(t => document.querySelector(t.getAttribute('href')));
+  function setActive(){
+    let current = sections[0];
+    sections.forEach(s => { if (s && window.scrollY + 140 >= s.offsetTop) current = s; });
+    tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#' + current.id));
+  }
+  window.addEventListener('scroll', setActive, {passive:true});
+  setActive();
+</script>
+
+</body>
+</html>
